@@ -13,7 +13,6 @@ class SMS
   def initialize(recipient, message)
     @recipient = recipient
     @message = message
-    @saved = false
   end
 
   def dispatch!
@@ -50,7 +49,6 @@ class SMS
   end
 
   def save!
-    @saved = true
   end
 
   def to_s
