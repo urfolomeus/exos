@@ -1,5 +1,4 @@
 require_relative './sms/recipient'
-require_relative './sms/logger'
 class SMS
 
   ORVEMCOM_USER = 'ppalace'
@@ -61,3 +60,19 @@ class SMS
 
 end
 
+class SMS
+
+  class Logger
+
+    attr_reader :messages
+    def initialize
+      @messages = []
+    end
+
+    def error(message)
+      messages << message
+    end
+
+  end
+
+end
