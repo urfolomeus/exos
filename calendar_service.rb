@@ -1,10 +1,14 @@
 require 'active_support/all'
 
+# in Norway
 module CalendarService
 
-  # in Norway
   def date_for_mothersday(today = Time.now.utc)
     date_for_parentsday(2, today)
+  end
+
+  def date_for_fathersday(today = Time.now.utc)
+    date_for_parentsday(11, today)
   end
 
   def date_for_parentsday(month, today)
