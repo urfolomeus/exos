@@ -1,11 +1,11 @@
-require_relative '../sms'
+require_relative 'dispatch'
 
 class HTTPClient
 end
 
-describe SMS do
+describe SMS::Dispatch do
 
-  let(:alice) { Recipient.new('12345678') }
+  let(:alice) { SMS::Recipient.new('12345678') }
   let(:fake_http_client) { stub(:fake_http_client) }
 
   it "sends it" do
@@ -17,7 +17,7 @@ describe SMS do
 
     fake_http_client.should_receive(:post_content).with(url, options).and_return { success_response }
 
-    sms = SMS.new(alice, "Just checking.")
+    sms = SMS::Dispatch.new(alice, "Just checking.")
     sms.dispatch!
 
     # Retrofitted tests.
@@ -30,14 +30,14 @@ describe SMS do
 
     fake_http_client.should_receive(:post_content).and_return { "1\r\nBAD\r\n" }
 
-    sms = SMS.new(alice, "Call me :(")
+    sms = SMS::Dispatch.new(alice, "Call me :(")
     sms.dispatch!
 
     sms.logger.messages.first.should match(/Denied by service provider/)
   end
 
   it "doesn't resend dispatched messages" do
-    sms = SMS.new(alice, "Try, try, again.")
+    sms = SMS::Dispatch.new(alice, "Try, try, again.")
     sms.dispatched_at = 1
 
     HTTPClient.should_not_receive(:new)
@@ -47,7 +47,7 @@ describe SMS do
   end
 
   it "can't send without a number" do
-    sms = SMS.new(Recipient.new, "Whatevs.")
+    sms = SMS::Dispatch.new(SMS::Recipient.new, "Whatevs.")
     sms.dispatch!
     sms.logger.messages.first.should match(/Missing mobile number/)
   end

@@ -1,5 +1,5 @@
 require 'ostruct'
-require_relative '../restrictions'
+require_relative 'content'
 
 describe Content do
 

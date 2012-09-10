@@ -1,8 +1,8 @@
-require_relative '../calendar_service.rb'
+require_relative 'holiday'
 
-describe CalendarService do
+describe Calendar::Holiday do
 
-  subject { stub.extend(CalendarService) }
+  subject { stub.extend(Calendar::Holiday) }
 
   let(:now) { Time.now.utc }
 

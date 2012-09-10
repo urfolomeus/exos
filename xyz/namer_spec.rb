@@ -1,7 +1,7 @@
-require_relative '../xyz_service'
+require_relative 'namer'
 require 'date'
 
-describe XYZService do
+describe XYZ::Namer do
 
   let(:target) do
     messages = {
@@ -15,7 +15,7 @@ describe XYZService do
     stub(:target, messages)
   end
 
-  subject { XYZService.xyz_filename(target) }
+  subject { XYZ::Namer.xyz_filename(target) }
 
   it 'works' do
     subject.should match(/07abcmagicunicorn_1337_[0-9a-f]{8}_isparklysp\.jpg/)
