@@ -3,7 +3,7 @@ require_relative 'lookup'
 describe Tinyurl do
   before(:each) do
     Tinyurl.class_variable_set :@@lookup_tiny_urls, {}
-    Tinyurl.stub(:endpoint => "http://is.gd/create.php", :environment => 'production')
+    Tinyurl.stub(:environment => 'production')
   end
 
   it "works" do
