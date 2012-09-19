@@ -33,9 +33,23 @@ describe Tinyurl do
     Tinyurl.get("invalidurl").should eq("invalidurl")
   end
 
-  it "swallows timeouts" do
+  it "swallows timeouts, returning the unshortened url" do
     Net::HTTP.stub(:start).and_raise(Timeout::Error)
     Tinyurl.get("http://timeout.com").should eq("http://timeout.com")
   end
 
+  it "works in staging, too" do
+    Tinyurl.stub(:environment => 'staging')
+    Tinyurl.get("http://kytrinyx.com").should == 'http://is.gd/5rzpAN'
+  end
+
+  it "doesn't actually work in development" do
+    Tinyurl.stub(:environment => 'development')
+    Tinyurl.get("http://xkcd.com/1110").should == nil
+  end
+
+  it "doesn't work in test, either" do
+    Tinyurl.stub(:environment => 'test')
+    Tinyurl.get("http://thedailywtf.com").should == nil
+  end
 end
