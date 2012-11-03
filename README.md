@@ -64,6 +64,43 @@ Have at it!
   or less right. How we did that without tests is a mystery.
   I've added tests.
 
+* `codersdojo/scheduler_interrupt_listener.rb`
+  The codersdojo is a great little project. At one point I wanted to
+  make a small contribution to it, and got sucked into the codebase.
+  It has many fascinating opportunities for thinking about Object Oriented
+  Design, as well as how tests are used. I didn't port the tests over,
+  because they have several dependencies.
+
+  For more indepth context about this code example see the section
+  _CodersDojo_ below.
+
+  I think this particular example has a small abstraction hiding inside of
+  it. What do you think?
+
+
+## CodersDojo
+
+This code was lifted unchanged from [github.com/it-agile/codersdojo](https://github.com/it-agile/codersdojo_client/blob/8f811002d6e612c06c586811282135d46bfbb308/lib/run/scheduler_interrupt_listener.rb)
+
+The context for this code is this: You have a script running in the background
+while you perform a Kata. This script records the state of the code each time
+you run the tests (green or red), and the number of seconds between each test run.
+
+When you kill the script, you're given several options:
+- just exit
+- upload your kata/performance to the the codersdojo website
+  (and then exit, presumably)
+- revert to the last green state (and then resume)
+- just resume
+
+There are three tests in the original project (not ported to this example),
+and they specify the following:
+
+- By default there is no last action.
+- On Ctrl-C + e the program should exit
+- On Ctrl-C + any other command, it should execute that command
+
+[scheduler_interrupt_listener_spec.rb](https://github.com/it-agile/codersdojo_client/blob/5d8148ad60fc0d2ad45879b9d30abd8deb979e8f/spec/unit/run/scheduler_interrupt_listener_spec.rb)
 
 ## Suggestion #1
 
