@@ -1,4 +1,4 @@
-require_relative 'holiday'
+require_relative '../lib/holiday'
 
 describe Calendar::Holiday do
 
@@ -28,6 +28,5 @@ describe Calendar::Holiday do
       expected = subject.date_for_fathersday(Time.utc(now.year, now.month, now.day))
       subject.date_for_fathersday.should eq(expected)
     end
-
   end
 end
