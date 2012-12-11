@@ -5,7 +5,6 @@ class Cell
   end
 
   def next_state
-
     if @state == :live
       return :dead if @live_neighbours < 2
       return :dead if @live_neighbours > 3
