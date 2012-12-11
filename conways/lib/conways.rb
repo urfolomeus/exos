@@ -5,6 +5,8 @@ class Cell
   end
 
   def next_state
+    # Check if cell is alive or dead
+    # and apply conways rules to get the next state
     if @state == :live
       return :dead if @live_neighbours < 2
       return :dead if @live_neighbours > 3
