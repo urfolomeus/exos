@@ -18,26 +18,18 @@ module Calendar
     private
 
     def date_for_parentsday(month, date_to_check)
-      requested_years_parentsday = parents_day_for_year(date_to_check.year, month)
+      requested_years_parentsday = second_sunday_of(date_to_check.year, month)
       if requested_years_parentsday >= date_to_check
         requested_years_parentsday
       else
-        parents_day_for_year(date_to_check.year + 1, month)
+        second_sunday_of(date_to_check.year + 1, month)
       end
-    end
-
-    def next_sunday_after(date)
-      date.sunday
     end
 
     def second_sunday_of(year, month)
       first_day_of_month = Date.new(year, month, 1)
       first_sunday = first_day_of_month.sunday
       first_sunday + 1.week
-    end
-
-    def parents_day_for_year(year, month)
-      second_sunday_of(year, month)
     end
   end
 end
