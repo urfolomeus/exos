@@ -4,11 +4,11 @@ require 'active_support/all'
 module Calendar
   module Holiday
 
-    def date_for_mothersday(today = Time.now.utc)
+    def date_for_mothersday(today = Date.today)
       date_for_parentsday(2, today)
     end
 
-    def date_for_fathersday(today = Time.now.utc)
+    def date_for_fathersday(today = Date.today)
       date_for_parentsday(11, today)
     end
 
