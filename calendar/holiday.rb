@@ -17,11 +17,10 @@ module Calendar
       close_date = Date.new(date_to_check.year, month, 8)
       possible_parentsday = next_sunday_after(close_date)
       if possible_parentsday >= date_to_check
-        actual_parentsday = possible_parentsday
+        possible_parentsday
       else
-        actual_parentsday = next_sunday_after(close_date + 1.year)
+        next_sunday_after(close_date + 1.year)
       end
-      return actual_parentsday
     end
 
     def next_sunday_after(date)
