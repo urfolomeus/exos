@@ -31,15 +31,7 @@ end
 # in Norway
 module Calendar
   module Holiday
-    def date_for_mothersday(date_to_check = Date.today)
-      next_occurence(MothersDay.new, date_to_check)
-    end
-
-    def date_for_fathersday(date_to_check = Date.today)
-      next_occurence(FathersDay.new, date_to_check)
-    end
-
-    def next_occurence(holiday, date_to_check)
+    def next_occurence(holiday, date_to_check = Date.today)
       if date_to_check <= holiday.falls_on(date_to_check.year)
         holiday.falls_on(date_to_check.year)
       else
