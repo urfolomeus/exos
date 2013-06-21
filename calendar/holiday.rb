@@ -21,7 +21,7 @@ module Calendar
       else
         actual_parentsday = next_sunday_after(close_date + 1.year)
       end
-      return actual_parentsday
+      return actual_parentsday.to_date
     end
 
     def next_sunday_after(time)
