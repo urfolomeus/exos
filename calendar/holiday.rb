@@ -4,12 +4,15 @@ require 'active_support/all'
 module Calendar
   module Holiday
 
+    FEBRUARY = 2
+    NOVEMBER = 11
+
     def date_for_mothersday(date_to_check = Date.today)
-      date_for_parentsday(2, date_to_check)
+      date_for_parentsday(FEBRUARY, date_to_check)
     end
 
     def date_for_fathersday(date_to_check = Date.today)
-      date_for_parentsday(11, date_to_check)
+      date_for_parentsday(NOVEMBER, date_to_check)
     end
 
     private
