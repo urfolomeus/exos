@@ -18,12 +18,13 @@ module Calendar
     private
 
     def date_for_parentsday(month, date_to_check)
-      requested_years_parentsday = second_sunday_of(date_to_check.year, month)
-      if requested_years_parentsday >= date_to_check
-        requested_years_parentsday
-      else
-        second_sunday_of(date_to_check.year + 1, month)
-      end
+      next_parentsday(date_to_check.year, month, date_to_check)
+    end
+
+    def next_parentsday(year, month, date_to_check)
+      parentsday = second_sunday_of(year, month)
+      return parentsday if date_to_check <= parentsday
+      next_parentsday(year + 1, month, date_to_check)
     end
 
     def second_sunday_of(year, month)
