@@ -4,8 +4,8 @@ require 'active_support/all'
 module Calendar
   module Holiday
 
-    def date_for_mothersday(today = Date.today)
-      date_for_parentsday(2, today)
+    def date_for_mothersday(date_to_check = Date.today)
+      date_for_parentsday(2, date_to_check)
     end
 
     def date_for_fathersday(today = Date.today)
