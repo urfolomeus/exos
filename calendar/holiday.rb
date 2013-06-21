@@ -8,8 +8,8 @@ module Calendar
       date_for_parentsday(2, date_to_check)
     end
 
-    def date_for_fathersday(today = Date.today)
-      date_for_parentsday(11, today)
+    def date_for_fathersday(date_to_check = Date.today)
+      date_for_parentsday(11, date_to_check)
     end
 
     def date_for_parentsday(month, today)
