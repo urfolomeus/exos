@@ -32,14 +32,14 @@ end
 module Calendar
   module Holiday
     def date_for_mothersday(date_to_check = Date.today)
-      next_occurance(MothersDay.new, date_to_check)
+      next_occurence(MothersDay.new, date_to_check)
     end
 
     def date_for_fathersday(date_to_check = Date.today)
-      next_occurance(FathersDay.new, date_to_check)
+      next_occurence(FathersDay.new, date_to_check)
     end
 
-    def next_occurance(holiday, date_to_check)
+    def next_occurence(holiday, date_to_check)
       if date_to_check <= holiday.falls_on(date_to_check.year)
         holiday.falls_on(date_to_check.year)
       else
