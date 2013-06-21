@@ -24,21 +24,33 @@ class ParentsDayCalculator
   end
 end
 
+class MothersdayCalculator < ParentsDayCalculator
+  FEBRUARY = 2
+
+  def initialize
+    super(FEBRUARY)
+  end
+end
+
+class FathersdayCalculator < ParentsDayCalculator
+  NOVEMBER = 11
+
+  def initialize
+    super(NOVEMBER)
+  end
+end
+
 # in Norway
 module Calendar
   module Holiday
-
-    FEBRUARY = 2
-    NOVEMBER = 11
-
     def date_for_mothersday(date_to_check = Date.today)
-      pdc = ParentsDayCalculator.new(FEBRUARY)
-      pdc.next_parentsday(date_to_check)
+      mdc = MothersdayCalculator.new
+      mdc.next_parentsday(date_to_check)
     end
 
     def date_for_fathersday(date_to_check = Date.today)
-      pdc = ParentsDayCalculator.new(NOVEMBER)
-      pdc.next_parentsday(date_to_check)
+      fdc = FathersdayCalculator.new
+      fdc.next_parentsday(date_to_check)
     end
   end
 end
