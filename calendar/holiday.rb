@@ -30,10 +30,14 @@ module Calendar
       date.sunday
     end
 
+    def second_sunday_of(year, month)
+      first_day_of_month = Date.new(year, month, 1)
+      first_sunday = first_day_of_month.sunday
+      first_sunday + 1.week
+    end
+
     def parents_day_for_year(year, month)
-      # Day number 8 will guarantee the second Sunday of the month
-      close_date = Date.new(year, month, 8)
-      next_sunday_after(close_date)
+      second_sunday_of(year, month)
     end
   end
 end
