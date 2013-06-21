@@ -24,11 +24,17 @@ class ParentsDayCalculator
   end
 end
 
-class MothersdayCalculator < ParentsDayCalculator
+class MothersdayCalculator
   FEBRUARY = 2
 
-  def initialize
-    super(FEBRUARY)
+  def for_year(year)
+    second_sunday_of(FEBRUARY, year)
+  end
+
+  def second_sunday_of(month, year)
+    first_day_of_month = Date.new(year, month, 1)
+    first_sunday = first_day_of_month.sunday
+    first_sunday + 1.week
   end
 end
 
@@ -45,7 +51,9 @@ module Calendar
   module Holiday
     def date_for_mothersday(date_to_check = Date.today)
       mdc = MothersdayCalculator.new
-      mdc.next_date(date_to_check)
+      this_mothersday = mdc.for_year(date_to_check.year)
+      return this_mothersday if date_to_check <= this_mothersday
+      mdc.for_year(date_to_check.year + 1)
     end
 
     def date_for_fathersday(date_to_check = Date.today)
