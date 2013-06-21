@@ -1,29 +1,5 @@
 require 'active_support/all'
 
-class ParentsDayCalculator
-  def initialize(parentsday_month)
-    @parentsday_month = parentsday_month
-  end
-
-  def next_date(date_to_check)
-    calc_next_date(date_to_check.year, date_to_check)
-  end
-
-  private
-
-  def calc_next_date(year, date_to_check)
-    parentsday = second_sunday_of(year)
-    return parentsday if date_to_check <= parentsday
-    calc_next_date(year + 1, date_to_check)
-  end
-
-  def second_sunday_of(year)
-    first_day_of_month = Date.new(year, @parentsday_month, 1)
-    first_sunday = first_day_of_month.sunday
-    first_sunday + 1.week
-  end
-end
-
 class MothersdayCalculator
   FEBRUARY = 2
 
