@@ -1,41 +1,50 @@
 require 'active_support/all'
 
+module RecurringCalcs
+  def second_sunday_of(month, year)
+    first_day_of_month = Date.new(year, month, 1)
+    first_sunday = first_day_of_month.sunday
+    first_sunday + 1.week
+  end
+end
+
+class MothersDay
+  include RecurringCalcs
+
+  FEBRUARY = 2
+
+  def falls_on(year)
+    second_sunday_of(FEBRUARY, year)
+  end
+end
+
+class FathersDay
+  include RecurringCalcs
+
+  NOVEMBER = 11
+
+  def falls_on(year)
+    second_sunday_of(NOVEMBER, year)
+  end
+end
+
 # in Norway
 module Calendar
   module Holiday
-    FEBRUARY = 2
-    NOVEMBER = 11
-
     def date_for_mothersday(date_to_check = Date.today)
-      if date_to_check <= mothersday_for(date_to_check.year)
-        mothersday_for(date_to_check.year)
-      else
-        mothersday_for(date_to_check.year + 1)
-      end
+      next_date(MothersDay.new, date_to_check)
     end
 
     def date_for_fathersday(date_to_check = Date.today)
-      if date_to_check <= fathersday_for(date_to_check.year)
-        fathersday_for(date_to_check.year)
+      next_date(FathersDay.new, date_to_check)
+    end
+
+    def next_date(holiday, date_to_check)
+      if date_to_check <= holiday.falls_on(date_to_check.year)
+        holiday.falls_on(date_to_check.year)
       else
-        fathersday_for(date_to_check.year + 1)
+        holiday.falls_on(date_to_check.year + 1)
       end
-    end
-
-    private
-
-    def mothersday_for(year)
-      second_sunday_of(FEBRUARY, year)
-    end
-
-    def fathersday_for(year)
-      second_sunday_of(NOVEMBER, year)
-    end
-
-    def second_sunday_of(month, year)
-      first_day_of_month = Date.new(year, month, 1)
-      first_sunday = first_day_of_month.sunday
-      first_sunday + 1.week
     end
   end
 end
