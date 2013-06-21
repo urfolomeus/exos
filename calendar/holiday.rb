@@ -16,16 +16,16 @@ module Calendar
       # Day number 8 will guarantee the second Sunday of the month
       close_date = Time.utc(today.year, month, 8)
       possible_parentsday = next_sunday_after(close_date)
-      if possible_parentsday >= today.beginning_of_day
+      if possible_parentsday >= today
         actual_parentsday = possible_parentsday
       else
         actual_parentsday = next_sunday_after(close_date + 1.year)
       end
-      return actual_parentsday.to_date
+      return actual_parentsday
     end
 
     def next_sunday_after(time)
-      return time + ((7 - time.wday) % 7) * 1.day
+      return ( time + ((7 - time.wday) % 7) * 1.day ).to_date
     end
 
   end
