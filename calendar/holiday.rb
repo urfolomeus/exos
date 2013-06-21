@@ -12,6 +12,8 @@ module Calendar
       date_for_parentsday(11, date_to_check)
     end
 
+    private
+
     def date_for_parentsday(month, date_to_check)
       requested_years_parentsday = parents_day_for_year(date_to_check.year, month)
       if requested_years_parentsday >= date_to_check

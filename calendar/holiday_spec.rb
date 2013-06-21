@@ -28,6 +28,5 @@ describe Calendar::Holiday do
       expected = subject.date_for_fathersday(now)
       subject.date_for_fathersday.should eq(expected)
     end
-
   end
 end
