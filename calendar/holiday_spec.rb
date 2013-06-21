@@ -4,7 +4,7 @@ describe Calendar::Holiday do
 
   subject { stub.extend(Calendar::Holiday) }
 
-  let(:now) { Time.now.utc }
+  let(:now) { Date.today }
 
   describe "mothersday" do
     it { subject.date_for_mothersday(Time.utc(1986, 2, 1)).should eq(Date.new(1986, 2, 9)) }
@@ -13,7 +13,7 @@ describe Calendar::Holiday do
     it { subject.date_for_mothersday(Time.utc(2012, 2, 13)).should eq(Date.new(2013, 2, 10)) }
 
     it "defaults to today" do
-      expected = subject.date_for_mothersday(Date.new(now.year, now.month, now.day))
+      expected = subject.date_for_mothersday(now)
       subject.date_for_mothersday.should eq(expected)
     end
   end
@@ -25,7 +25,7 @@ describe Calendar::Holiday do
     it { subject.date_for_fathersday(Time.utc(2012, 11, 12)).should eq(Date.new(2013, 11, 10)) }
 
     it "defaults to today" do
-      expected = subject.date_for_fathersday(Date.new(now.year, now.month, now.day))
+      expected = subject.date_for_fathersday(now)
       subject.date_for_fathersday.should eq(expected)
     end
 
