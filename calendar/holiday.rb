@@ -28,6 +28,12 @@ class FathersDay
   end
 end
 
+class ChristmasDay
+  def falls_on(year)
+    Date.new(year, 12, 25)
+  end
+end
+
 # in Norway
 module Calendar
   module Holiday

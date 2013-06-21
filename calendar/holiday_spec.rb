@@ -29,4 +29,16 @@ describe Calendar::Holiday do
       subject.next_occurence(FathersDay.new).should eq(expected)
     end
   end
+
+  describe "christmas day" do
+    it { subject.next_occurence(ChristmasDay.new, Date.new(1986, 12, 1)).should eq(Date.new(1986, 12, 25)) }
+    it { subject.next_occurence(ChristmasDay.new, Date.new(2012, 12, 24)).should eq(Date.new(2012, 12, 25)) }
+    it { subject.next_occurence(ChristmasDay.new, Date.new(2012, 12, 25)).should eq(Date.new(2012, 12, 25)) }
+    it { subject.next_occurence(ChristmasDay.new, Date.new(2012, 12, 26)).should eq(Date.new(2013, 12, 25)) }
+
+    it "defaults to today" do
+      expected = subject.next_occurence(ChristmasDay.new, now)
+      subject.next_occurence(ChristmasDay.new).should eq(expected)
+    end
+  end
 end
