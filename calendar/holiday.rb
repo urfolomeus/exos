@@ -21,9 +21,11 @@ module Calendar
     end
 
     def date_for_mothersday(date_to_check = Date.today)
-      this_mothersday = mothersday_for_year(date_to_check.year)
-      return this_mothersday if date_to_check <= this_mothersday
-      mothersday_for_year(date_to_check.year + 1)
+      if date_to_check <= mothersday_for_year(date_to_check.year)
+        mothersday_for_year(date_to_check.year)
+      else
+        mothersday_for_year(date_to_check.year + 1)
+      end
     end
 
     def date_for_fathersday(date_to_check = Date.today)
