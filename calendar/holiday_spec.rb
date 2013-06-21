@@ -5,29 +5,32 @@ describe Calendar::Holiday do
   let(:now)          { Date.today }
 
   describe "mothersday" do
+    let(:this_mothersday) { Date.parse('Sun 12th February, 2012') }
+    let(:next_mothersday) { Date.parse('Sun 10th February, 2013') }
+
     subject { holiday_test.next_occurence(MothersDay.new, date_to_check) }
 
     context "when date_to_check is before the holiday of that year" do
-      let(:date_to_check) { Date.new(2012, 2, 11) }
+      let(:date_to_check) { this_mothersday - 1 }
 
       it "provides the holiday for that year" do
-        subject.should eq(Date.new(2012, 2, 12))
+        subject.should eq(this_mothersday)
       end
     end
 
     context "when date_to_check is on the holiday of that year" do
-      let(:date_to_check) { Date.new(2012, 2, 12) }
+      let(:date_to_check) { this_mothersday }
 
       it "provides the holiday for that year" do
-        subject.should eq(Date.new(2012, 2, 12))
+        subject.should eq(this_mothersday)
       end
     end
 
     context "when date_to_check is after the holiday of that year" do
-      let(:date_to_check) { Date.new(2012, 2, 13) }
+      let(:date_to_check) { this_mothersday + 1 }
 
       it "provides the holiday for the following year" do
-        subject.should eq(Date.new(2013, 2, 10))
+        subject.should eq(next_mothersday)
       end
     end
   end
