@@ -25,8 +25,7 @@ module Calendar
     end
 
     def next_sunday_after(date)
-      time = Time.utc(date.year, date.month, date.day)
-      return ( time + ((7 - time.wday) % 7) * 1.day ).to_date
+      date.sunday
     end
 
   end
