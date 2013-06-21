@@ -15,9 +15,9 @@ module Calendar
     def date_for_parentsday(month, date_to_check)
       # Day number 8 will guarantee the second Sunday of the month
       close_date = Date.new(date_to_check.year, month, 8)
-      this_years_parentsday = next_sunday_after(close_date)
-      if this_years_parentsday >= date_to_check
-        this_years_parentsday
+      requested_years_parentsday = next_sunday_after(close_date)
+      if requested_years_parentsday >= date_to_check
+        requested_years_parentsday
       else
         next_sunday_after(close_date + 1.year)
       end
